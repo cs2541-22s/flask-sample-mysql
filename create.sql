@@ -1,4 +1,8 @@
-PRAGMA foreign_keys=off;
+CREATE DATABASE sample
+    DEFAULT CHARACTER SET = 'utf8mb4';
+use sample;
+
+SET FOREIGN_KEY_CHECKS=0;
 
 DROP TABLE IF EXISTS students;
 CREATE TABLE students (
@@ -6,8 +10,7 @@ CREATE TABLE students (
   name       varchar(50) not null,
   email       varchar(50) not null
 );
-
-PRAGMA foreign_keys=on;
+SET FOREIGN_KEY_CHECKS=1;
 
 INSERT INTO students VALUES ('G12345678', 'Jett Jacobs', 'jacobsemail@fakeemail.com');
 INSERT INTO students VALUES ('G22489071', 'Alex Coleman', 'alexcoleman@fakeemail.com');
