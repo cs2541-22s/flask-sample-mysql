@@ -1,11 +1,12 @@
+import secrets # fill your DB info here - use secrets.
 import mysql.connector
 from flask import Flask, render_template, request, redirect
 
 app = Flask('app')
 mydb = mysql.connector.connect(
-    host="instructor-1.ck8ualavedvt.us-east-1.rds.amazonaws.com",
-    user="admin",
-    password="SECRET",
+    host=secrets.config["host"],
+    user=secrets.config["user"],
+    password=secrets.config["password"],
     database="sample"
   )
 
@@ -15,6 +16,7 @@ def index():
   cursor = mydb.cursor(dictionary=True)
   # Get all the students and render to template
   cursor.execute("SELECT * FROM students;")
+
   students = cursor.fetchall()
   # or use cursor.fetchone() to get a single row
   return render_template("index.html", students=students)
